@@ -22,24 +22,23 @@
     (spit file-path
           (write-scad part))))
 
-(defn config
-  ([] (config {:frame-thickness 6
-               :frame-width 44
-               :battery-width 18
-               :battery-height 18
-               :battery-length 70
-               :band-clearance 0.5
-               :band-thickness 2
-               :band-width 8
-               :progger-width 6
-               :progger-thickness 6
-               :velcro-width 10
-               }))
-  ([opts]
-   (let [opts (merge {:pretty? false }
-                     opts)]
+(def default-config {:frame-thickness 6
+                     :frame-width 44
+                     :battery-width 18
+                     :battery-height 18
+                     :battery-length 70
+                     :band-clearance 0.2
+                     :band-thickness 2
+                     :band-width 8
+                     :progger-width 6
+                     :progger-thickness 6
+                     :velcro-width 10
+                     })
 
-     opts)))
+(defn config
+  ([] default-config)
+  ([opts]
+   (merge default-config opts)))
 
 (defn frame
   [{:keys [frame-width frame-thickness]}]
@@ -51,7 +50,7 @@
   [{:keys [battery-width battery-height battery-length frame-thickness]}]
   (translate [0 0 (+ (/ battery-height 2) frame-thickness)]
              (rotate (degrees 90) [0 1 0]
-                     (cube battery-width battery-height battery-length))))
+                     (cube battery-height battery-width battery-length))))
 
 (defn progger
   [{:keys [progger-width band-width progger-thickness]}]
@@ -111,8 +110,17 @@
    (color green
           (holder cfg))])
 
-(render! "holder" (holder (config)))
-(render! "thing" (thing (config)))
+(def config-3s-550 (config {:battery-width 18
+         :battery-height 18
+         :battery-length 70}))
+
+(def config-4s-850 (config {:battery-width 27.5
+         :battery-height 30
+         :battery-length 63}))
+
+(render! "holder-4s-850" (holder config-4s-850))
+(render! "holder-3s-550" (holder config-3s-550))
+(render! "thing" (thing config-3s-550))
 ;(render! "thing" (progger-set (config)))
 
 
