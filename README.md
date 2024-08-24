@@ -7,8 +7,6 @@ out of their mounting.
 
 ## Files
 
-![3d render](./resources/moneyshot.png)
-
 * [GMB 550 3s LiPo/LiHV](./out/holder-3s-550.stl)
 * [GMB 850 4s LiHV](./out/holder-4s-850.stl)
 
