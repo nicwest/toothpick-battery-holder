@@ -3,7 +3,7 @@
 Designs for a band that goes around drone batteries and stops them from slipping
 out of their mounting.
 
-![Photo of first prototype](./resources/photo.png)
+![Photo of first prototype](./resources/photos.png)
 
 ## Files
 
